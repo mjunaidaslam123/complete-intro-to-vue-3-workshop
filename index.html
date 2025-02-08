@@ -8,23 +8,27 @@
   </head>
   <body>
     <div id="app">
-      <p v-if="characterList.length === 0">There are no characters</p>
-      <ul v-else-if="characterList.length % 2 === 0">
-        <li v-for="character in characterList">{{ character.name }}</li>
+      <!-- <p v-if="characterList.length === 0">There are no characters</p> -->
+      <ul >
+        <li v-for="character in characterList">{{ character.name }} 
+          <button @click="handleFavorite(character.name)">Favorite</button>
+        </li>
       </ul>
-      <p>
-        <span v-for="(character, index) in characterList"
-          >{{ character.name }}{{ index === characterList.length - 1 ? '' : ', '
-          }}
-        </span>
-      </p>
-      <p v-else>There are odd characters!</p>
+      <li v-for="item in faviorteList"> Faviourte is {{item}}</li>
+     
+      <p>Add characters</p>
+      <label>Character to add</label>
+      <input type="text" v-model="newChar.name"/>
+      <button @click="addChar">Add character</button>
+      <pre>{{newChar}}</pre>
     </div>
 
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script>
       Vue.createApp({
         data: () => ({
+          faviorteList:[],
+          newChar:{name:''},
           characterList: [
             {
               name: 'Aang'
@@ -39,7 +43,17 @@
               name: 'Katara'
             }
           ]
-        })
+        }),
+        methods:{
+          handleFavorite(name){
+            this.faviorteList.push(name)
+            console.log(name)
+          },
+          addChar(){
+            this.characterList.push(this.newChar)
+            this.newChar={name:''}
+          }
+        }
       }).mount('#app')
     </script>
   </body>
