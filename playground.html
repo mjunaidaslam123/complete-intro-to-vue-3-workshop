@@ -9,7 +9,9 @@
   <body>
     <h1>Hello Frontend Masters!</h1>
     <div id="app">
+
       <h1>Counter</h1>
+      <h3>{{displayData}}</h3>
       <p>{{ count }}</p>
       <button v-on:click="incrementCount">Increment Count</button>
       <h1>{{ incrementAmount }}</h1>
@@ -38,6 +40,7 @@
         data() {
           return {
             count: 10,
+            countTitle:'Good character',
             incrementAmount: 8,
             message: 'Hello it works',
             listOfNumbers: [
@@ -69,9 +72,23 @@
             ]
           }
         },
+        computed:{
+          displayData(){
+            if (this.count>20){
+             return this.countTitle='Very Long Title'
+            }
+          }
+        },
         methods: {
           incrementCount() {
             this.count += this.incrementAmount
+          }
+        },
+        watch:{
+          count(value){
+            if (value<20){
+              this.countTitle='Very  title'
+            }
           }
         }
       })
