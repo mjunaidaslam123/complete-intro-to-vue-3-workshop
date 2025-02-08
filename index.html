@@ -4,7 +4,64 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
     <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   </head>
-  <body></body>
+  
+  <body>
+
+    <div id="app">
+      <p v-if="cities.length===0">
+        No cities
+      </p>
+      <ul v-else>
+        <li v-for="city in cities">
+          {{city.name}}
+          <ul v-for="item in tourist" >
+            <li  v-if="city.name == item.city"> Tourist attraction {{ item.name}}</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+      const {createApp} = Vue 
+      const app = createApp({
+        data:()=>({
+          
+            cities : [
+              {name: 'New York', country: 'USA'},
+              {name: 'Paris', country: 'France'},
+              {name: 'Tokyo', country: 'Japan'}
+            ],
+            tourist: [
+              {name: 'Eiffel Tower', city: 'Paris'},
+              {name: 'Statue of Liberty', city: 'New York'},
+              {name: 'Tokyo Tower', city: 'Tokyo'}
+            ],
+            touristLookingFor: [{
+              resident : 'cheapest',
+              people : 'friendly',
+            }],
+            
+
+
+            
+          
+        })
+      })
+      app.mount('#app')
+    </script>
+  </body>
 </html>
