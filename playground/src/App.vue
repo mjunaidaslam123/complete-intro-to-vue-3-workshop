@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
 import UserCard from "./components/user-card.vue";
 import BaseCounter from "./components/base-counter.vue";
 import BaseButton from "./components/base-button.vue";
@@ -90,4 +90,39 @@ export default {
       </ul>
     </li>
   </ul>
+</template> -->
+
+
+<template>
+  <h3>{{ pokeDex }}</h3>
+  <button @click="fetchPoke">Fetch Data </button>
 </template>
+<script>
+//https://pokeapi.co/api/v2/pokemon/ditto
+export default {
+  data: () => ({
+    pokeDex: [1, 2, 3],
+
+  }),
+  created() {
+    this.fetchPoke()
+    console.log(this.pokeDex)
+  },
+  beforeCreate() {
+    console.log('Before Created')
+    console.log(this.pokeDex)
+  },
+
+  methods: {
+
+    async fetchPoke() {
+      this.pokeDex = await fetch('https://pokeapi.co/api/v2/pokemon/ditto').then(response => response.json())
+    },
+
+
+
+
+  }
+
+}
+</script>
