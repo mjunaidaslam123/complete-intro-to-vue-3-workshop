@@ -1,11 +1,13 @@
 <script>
 import UserCard from "./components/user-card.vue";
 import BaseCounter from "./components/base-counter.vue";
+import Welcome from "./components/welcome.vue";
 
 export default {
   components: {
     BaseCounter,
     UserCard,
+    Welcome,
   },
   data() {
     return {
@@ -62,6 +64,14 @@ export default {
 </script>
 
 <template>
+  <Welcome @hello-world="changeName">
+    <template #but>
+      Hello
+    </template>
+    <template v-slot:button>
+      Never Again
+    </template>
+  </Welcome>
   <UserCard :user="refinedUserData" @change-name="changeName" />
   <BaseCounter />
   <hr />

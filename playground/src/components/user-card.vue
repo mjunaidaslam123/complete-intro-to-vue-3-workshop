@@ -6,7 +6,7 @@ export default {
       required: true,
     },
   },
-  emits: ["change-name"],
+  emits: ['change-name'],
   methods: {
     tellParentChangeName() {
       this.$emit("change-name");
